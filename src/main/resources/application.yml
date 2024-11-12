@@ -1,0 +1,62 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: spring-boot-auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      idle-timeout: 120000
+      pool-name: auth
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: public
+        enable_lazy_load_no_trans: true
+    open-in-view: false
+  devtools:
+    restart:
+      enabled: true
+
+# Logging
+logging:
+  level:
+    com.shubham: DEBUG
+    org.hibernate.stat: DEBUG
+    org.hibernate.sql: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} [%clr(%5p)][%clr(%15.15t){yellow}] --- %clr(%c{1}){blue} : %clr(%m){faint}%n"
+management:
+  server:
+    port: 9101
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - auditevents
+          - beans
+          - refresh
+          - configprops
+          - env
+          - flyway
+          - health
+          - httptrace
+          - info
+          - loggers
+          - liquibase
+          - metrics
