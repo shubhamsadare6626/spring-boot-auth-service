@@ -1,8 +1,8 @@
 package com.shubham.authservice.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shubham.authservice.model.User;
-import com.shubham.authservice.repos.UserRepository;
+import com.shubham.authservice.entities.User;
+import com.shubham.authservice.repositories.UserRepository;
 import com.shubham.openapi.model.UserDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -62,6 +62,9 @@ public class UserService {
         .email(dto.getEmail())
         .mobileNumber(dto.getMobileNumber())
         .streetAddress(dto.getStreetAddress())
+        .age(dto.getAge())
+        .migrated(dto.getMigrated())
+        .password(dto.getPassword())
         .build();
   }
 
@@ -72,6 +75,8 @@ public class UserService {
     existingUser.setEmail(dto.getEmail());
     existingUser.setMobileNumber(dto.getMobileNumber());
     existingUser.setStreetAddress(dto.getStreetAddress());
+    existingUser.setAge(dto.getAge());
+    existingUser.setMigrated(dto.getMigrated());
     return existingUser;
   }
 }

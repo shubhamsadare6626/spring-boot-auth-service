@@ -1,4 +1,4 @@
-package com.shubham.authservice.model;
+package com.shubham.authservice.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,4 +42,13 @@ public class User {
 
   @Column(name = "street_address")
   private String streetAddress;
+
+  @Column(name = "age")
+  private int age;
+
+  @Column(name = "migrated")
+  private Boolean migrated;
+
+  @Column(name = "password")
+  private String password;
 }
