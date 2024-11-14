@@ -184,6 +184,7 @@
                         </goals>
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/static/openapi.yml</inputSpec>
+                            <!--<inputSpec>${project.basedir}/src/main/resources/static/openapi-json.json</inputSpec>-->
                             <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.shubham.openapi.api</apiPackage>
@@ -196,10 +197,10 @@
                                 <java17>true</java17>
                                 <dateLibrary>java17</dateLibrary>
                                 <openApiNullable>false</openApiNullable>
-                                <documentationProvider>none</documentationProvider>
-                                <annotationLibrary>none</annotationLibrary>
                                 <useBeanValidation>true</useBeanValidation>
+                                <!-- Generate Constructors on model class-->
                                 <additionalModelTypeAnnotations>@lombok.AllArgsConstructor;@lombok.NoArgsConstructor;@lombok.experimental.SuperBuilder</additionalModelTypeAnnotations>
+                                <!-- configured Generator to use Jakarta EE library -->
                                 <useJakartaEe>true</useJakartaEe>
                             </configOptions>
                         </configuration>
