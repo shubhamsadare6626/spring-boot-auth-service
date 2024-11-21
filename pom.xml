@@ -5,15 +5,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.5</version>
+        <version>3.3.4</version>
         <relativePath/>
-        <!-- lookup parent from repository -->
     </parent>
     <groupId>com.shubham</groupId>
     <artifactId>auth-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>spring-boot-auth-service</name>
-    <description>Demo project for Spring Boot</description>
+    <description>User management project of Spring Boot</description>
     <url/>
     <licenses>
         <license/>
@@ -176,14 +175,16 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.9.0</version>
+                <version>7.8.0</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/static/openapi.yml</inputSpec>
+                            <skipValidateSpec>true</skipValidateSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/static/openapi-v1.yaml</inputSpec>
+                            <!--                            <inputSpecRootDirectory>${project.basedir}/src/main/resources/static</inputSpecRootDirectory>-->
                             <!--<inputSpec>${project.basedir}/src/main/resources/static/openapi-json.json</inputSpec>-->
                             <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources</output>
@@ -193,9 +194,10 @@
                             <generateSupportingFiles>true</generateSupportingFiles>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configOptions>
+                                <delegatePattern>true</delegatePattern>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useTags>true</useTags>
                                 <interfaceOnly>true</interfaceOnly>
-                                <java17>true</java17>
-                                <dateLibrary>java17</dateLibrary>
                                 <openApiNullable>false</openApiNullable>
                                 <useBeanValidation>true</useBeanValidation>
                                 <!-- Generate Constructors on model class-->

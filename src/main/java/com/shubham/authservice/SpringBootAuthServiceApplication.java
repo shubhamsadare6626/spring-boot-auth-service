@@ -8,10 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition(
     info =
-        @Info(
-            title = "Authentication Service",
-            version = "1.0",
-            description = "User Authentication"))
+        @Info(title = "Authentication Service", version = "1.0", description = "User Management"))
 public class SpringBootAuthServiceApplication {
 
   public static void main(String[] args) {

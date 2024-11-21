@@ -1,7 +1,7 @@
 package com.shubham.authservice.controllers;
 
 import com.shubham.authservice.services.UserService;
-import com.shubham.openapi.api.ApiApi;
+import com.shubham.openapi.api.UserApi;
 import com.shubham.openapi.model.*;
 import java.util.List;
 import javax.validation.Valid;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController implements ApiApi {
+public class UserController implements UserApi {
 
   private final UserService userService;
 

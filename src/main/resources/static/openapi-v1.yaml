@@ -23,7 +23,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/UserDto'
-
     post:
       summary: Create a new user
       description: Creates a new user with the provided information.
@@ -65,13 +64,13 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: User found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserDto'
-        '404':
+        "404":
           description: User not found
     put:
       summary: Update user by ID
@@ -102,7 +101,6 @@ paths:
                 $ref: '#/components/schemas/UserDto'
         "404":
           description: User not found
-
     delete:
       summary: Delete user by ID
       description: Deletes a user by their unique ID.

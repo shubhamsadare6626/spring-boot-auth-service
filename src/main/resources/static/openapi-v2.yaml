@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: Models Only Specification
+  version: "1.0"
+  description: OpenAPI specification to generate only models.
+components:
+  schemas:
+    ProductDto:
+      type: object
+      required:
+        - name
+        - price
+      properties:
+        id:
+          type: string
+          example: "001"
+        name:
+          type: string
+          example: "Smartphone"
+        price:
+          type: number
+          format: float
+          example: 299.99
+        inStock:
+          type: boolean
+          example: true
