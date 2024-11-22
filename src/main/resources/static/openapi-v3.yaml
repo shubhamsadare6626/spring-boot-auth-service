@@ -1,0 +1,38 @@
+openapi: 3.0.3
+components:
+  schemas:
+    ProductDto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "001"
+        name:
+          type: string
+          example: "Smartphone"
+        price:
+          type: number
+          format: float
+          example: 299.99
+        inStock:
+          type: boolean
+          example: true
+    SampleDto:
+      type: object
+      required:
+        - name
+        - price
+      properties:
+        id:
+          type: string
+          example: "001"
+        name:
+          type: string
+          example: "Smartphone"
+        price:
+          type: number
+          format: float
+          example: 299.99
+        inStock:
+          type: boolean
+          example: true

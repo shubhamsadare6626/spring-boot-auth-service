@@ -1,26 +1,28 @@
 openapi: 3.0.3
 info:
-  title: Models Only Specification
+  title: Product API
   version: "1.0"
-  description: OpenAPI specification to generate only models.
+  description: API to retrieve product details.
+paths:
+  /api/product:
+    get:
+      summary: Get all products
+      description: Retrieve a list of all available products.
+      operationId: getAll
+      tags:
+        - Product
+      responses:
+        "200":
+          description: A list of products.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
 components:
   schemas:
     ProductDto:
-      type: object
-      required:
-        - name
-        - price
-      properties:
-        id:
-          type: string
-          example: "001"
-        name:
-          type: string
-          example: "Smartphone"
-        price:
-          type: number
-          format: float
-          example: 299.99
-        inStock:
-          type: boolean
-          example: true
+      $ref: './openapi-v3.yaml#/components/schemas/ProductDto'
+    SampleDto:
+      $ref: './openapi-v3.yaml#/components/schemas/SampleDto'

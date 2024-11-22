@@ -1,0 +1,15 @@
+---
+servers:
+- url: "http://localhost:8080"
+openapi: "3.0.3"
+paths:
+  /api/users:
+    $ref: "./openapi-v1.yaml#/paths/~1api~1users"
+  /api/users/{id}:
+    $ref: "./openapi-v1.yaml#/paths/~1api~1users~1{id}"
+  /api/product:
+    $ref: "./openapi-v2.yaml#/paths/~1api~1product"
+info:
+  title: "merged spec"
+  description: "merged spec"
+  version: "1.0.0"

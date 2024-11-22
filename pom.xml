@@ -183,23 +183,23 @@
                         </goals>
                         <configuration>
                             <skipValidateSpec>true</skipValidateSpec>
-                            <inputSpec>${project.basedir}/src/main/resources/static/openapi-v1.yaml</inputSpec>
-                            <!--                            <inputSpecRootDirectory>${project.basedir}/src/main/resources/static</inputSpecRootDirectory>-->
+                            <!--<inputSpec>${project.basedir}/src/main/resources/static/openapi-v1.yaml</inputSpec>-->
+                            <inputSpecRootDirectory>${project.basedir}/src/main/resources/static</inputSpecRootDirectory>
                             <!--<inputSpec>${project.basedir}/src/main/resources/static/openapi-json.json</inputSpec>-->
                             <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources</output>
                             <apiPackage>com.shubham.openapi.api</apiPackage>
                             <modelPackage>com.shubham.openapi.model</modelPackage>
                             <openapiGeneratorIgnoreList>src/main/java/org/openapitools/OpenApiGeneratorApplication.java</openapiGeneratorIgnoreList>
-                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <!--below property used to generate supportive APIUtil class-->
+                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                             <skipValidateSpec>true</skipValidateSpec>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <useTags>true</useTags>
-                                <interfaceOnly>true</interfaceOnly>
+                                <!-- Exclude API declarations -->
                                 <openApiNullable>false</openApiNullable>
-                                <useBeanValidation>true</useBeanValidation>
                                 <!-- Generate Constructors on model class-->
                                 <additionalModelTypeAnnotations>@lombok.AllArgsConstructor;@lombok.NoArgsConstructor;@lombok.experimental.SuperBuilder</additionalModelTypeAnnotations>
                                 <!-- configured Generator to use Jakarta EE library -->
