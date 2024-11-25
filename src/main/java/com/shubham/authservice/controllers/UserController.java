@@ -42,8 +42,8 @@ public class UserController implements UserApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteUser(String id) {
+  public ResponseEntity<SuccessDto> deleteUser(String id) {
     userService.deleteUser(id);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
   }
 }

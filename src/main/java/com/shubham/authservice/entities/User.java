@@ -1,5 +1,6 @@
 package com.shubham.authservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,5 +51,6 @@ public class User {
   private Boolean migrated;
 
   @Column(name = "password")
+  @JsonIgnore
   private String password;
 }
