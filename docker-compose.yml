@@ -1,8 +1,8 @@
 version: '3'
 services:
-  spring-auth-service:
-    container_name: spring-auth-service
-    image: personal/spring-auth-service
+  spring-boot-auth-service:
+    container_name: spring-boot-auth-service
+    image: personal/spring-boot-auth-service
     ports:
       - "8085:8085"
     environment:

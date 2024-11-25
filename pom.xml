@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>com.shubham</groupId>
-    <artifactId>auth-service</artifactId>
+    <artifactId>spring-boot-auth-service</artifactId>
     <version>1.0.0</version>
     <name>spring-boot-auth-service</name>
     <description>User management project of Spring Boot</description>
