@@ -1,5 +1,5 @@
 git pull origin main && \
-mvn spring-boot:run  && \
+mvn clean install -DskipTests=true && \
 docker-compose down && \
 docker build -t personal/spring-boot-auth-service . && \
 docker image prune -f && docker-compose up -d && \
