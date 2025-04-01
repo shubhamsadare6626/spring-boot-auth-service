@@ -1,11 +1,14 @@
 openapi: 3.0.3
 info:
   title: User API
-  version: "1.0"
+  version: 1.0.0
   description: API documentation for user management.
 servers:
   - url: http://localhost:8085
     description: User Management API
+tags:
+  - name: User
+    description: User management API's
 paths:
   /api/users:
     get:
@@ -24,7 +27,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/UserDto'
         "500":
-          description: Error occured
+          description: Error occurred
           content:
             application/json:
               schema:
@@ -58,7 +61,7 @@ paths:
         "500":
           description: Internal server error
           content:
-            application/json:
+            applicatio65.0.109.192n/json:
               schema:
                 $ref: "#/components/schemas/GlobalExceptionDto"
 
@@ -76,7 +79,7 @@ paths:
           schema:
             type: string
             description: User Id to fetch User details
-            example: a1b2c3d4-e5f6-7890-gh12-ijkl34567890
+            example: a1b2c3d4-e5f6-7890-gh12-ij5l34567890
       responses:
         "200":
           description: User found
@@ -138,7 +141,7 @@ paths:
           description: ID of the user to delete
           schema:
             type: string
-            example: a1b2c3d4-e5f6-7890-gh12-ijkl34567890
+            example: a1b2c3d4-e5f6-7890-gh12-ij5l34567890
       responses:
         '200':
           description: User deleted successfully
@@ -173,9 +176,9 @@ components:
           example: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
         username:
           type: string
-          example: "alice123"
+          example: "alice1"
           minLength: 4
-          maxLength: 6
+          maxLength: 8
         firstname:
           type: string
           example: "Alice"
@@ -206,13 +209,13 @@ components:
           minLength: 6
           description: The user's password, must be at least 8 characters long.
           pattern: '^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
-          example: Alicejan@123
+          example: Nisha@1234
     GlobalExceptionDto:
       type: object
       properties:
         timestamp:
           type: string
-          description: Error occured timestamp
+          description: Error occurred timestamp
           example: "2024-11-22T05:14:09.138+00:00"
         status:
           type: integer
@@ -224,11 +227,11 @@ components:
           example: Internal server Error
         path:
           type: string
-          desciption: Error occured on endpoint path 
+          description: Error occurred on endpoint path 
           example: "/api/v1/users"
         error:
           type: string
-          example: Unhandled Exception occured while performing operation
+          example: Unhandled Exception occurred while performing operation
     ValidationError:
       type: object
       properties:
@@ -252,12 +255,12 @@ components:
     SuccessDto:
       type: object
       properties:
-        messgae:
+        message:
           type: string
           example: "User Deleted Successfully.."
         timestamp:
           type: string
-          description: Error occured timestamp
+          description: Error occurred timestamp
           example: "2024-11-22T05:14:09.138+00:00"
         status:
           type: integer

@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.3",
   "info": {
     "title": "User API",
     "version": "1.0",
@@ -14,7 +14,7 @@
   "paths": {
     "/api/users": {
       "get": {
-        "summary": "List users",
+        "summary": "Get all users",
         "description": "Retrieves a list of all users.",
         "operationId": "getAllUsers",
         "tags": [
@@ -33,11 +33,21 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error occurred",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalExceptionDto"
+                }
+              }
+            }
           }
         }
       },
       "post": {
-        "summary": "Create a new User",
+        "summary": "Create a new user",
         "description": "Creates a new user with the provided information.",
         "operationId": "createUser",
         "tags": [
@@ -55,7 +65,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "UserDto created successfully",
             "content": {
               "application/json": {
@@ -74,6 +84,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "applicatio65.0.109.192n/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalExceptionDto"
+                }
+              }
+            }
           }
         }
       }
@@ -88,12 +108,13 @@
         ],
         "parameters": [
           {
-            "name": "id",
             "in": "path",
+            "name": "id",
             "required": true,
-            "description": "ID of the user to retrieve",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "description": "User Id to fetch User details",
+              "example": "a1b2c3d4-e5f6-7890-gh12-ij5l34567890"
             }
           }
         ],
@@ -108,8 +129,15 @@
               }
             }
           },
-          "404": {
-            "description": "User not found"
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalExceptionDto"
+                }
+              }
+            }
           }
         }
       },
@@ -153,8 +181,15 @@
               }
             }
           },
-          "404": {
-            "description": "User not found"
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
           }
         }
       },
@@ -172,16 +207,41 @@
             "required": true,
             "description": "ID of the user to delete",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "a1b2c3d4-e5f6-7890-gh12-ij5l34567890"
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "User deleted successfully"
+          "200": {
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessDto"
+                }
+              }
+            }
           },
-          "404": {
-            "description": "User not found"
+          "400": {
+            "description": "Invalid request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalExceptionDto"
+                }
+              }
+            }
           }
         }
       }
@@ -204,9 +264,9 @@
           },
           "username": {
             "type": "string",
-            "example": "alice123",
+            "example": "alice1",
             "minLength": 4,
-            "maxLength": 6
+            "maxLength": 8
           },
           "firstname": {
             "type": "string",
@@ -220,7 +280,7 @@
             "type": "string",
             "format": "email",
             "pattern": "^[\\w\\.-]+@[a-zA-Z\\d\\.-]+\\.[a-zA-Z]{2,}$",
-            "example": "alice.johnson@example.com"
+            "example": "alice@example.com"
           },
           "mobileNumber": {
             "type": "string",
@@ -232,7 +292,7 @@
           },
           "migrated": {
             "type": "boolean",
-            "default": false
+            "default": true
           },
           "age": {
             "type": "integer",
@@ -241,10 +301,40 @@
           },
           "password": {
             "type": "string",
+            "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonIgnore",
             "minLength": 6,
             "description": "The user's password, must be at least 8 characters long.",
             "pattern": "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
-            "example": "Shubham@123"
+            "example": "Nisha@1234"
+          }
+        }
+      },
+      "GlobalExceptionDto": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "Error occurred timestamp",
+            "example": "2024-11-22T05:14:09.138+00:00"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Error code Issue",
+            "example": 500
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message describes issue",
+            "example": "Internal server Error"
+          },
+          "path": {
+            "type": "string",
+            "description": "Error occurred on endpoint path",
+            "example": "/api/v1/users"
+          },
+          "error": {
+            "type": "string",
+            "example": "Unhandled Exception occurred while performing operation"
           }
         }
       },
@@ -252,12 +342,10 @@
         "type": "object",
         "properties": {
           "field": {
-            "type": "string",
-            "example": "email"
+            "type": "string"
           },
           "message": {
-            "type": "string",
-            "example": "must match '^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,}$'"
+            "type": "string"
           }
         }
       },
@@ -270,13 +358,32 @@
           },
           "message": {
             "type": "string",
-            "example": "Validation failed for request data"
+            "example": "Validation failed for Request data"
           },
           "errors": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ValidationError"
             }
+          }
+        }
+      },
+      "SuccessDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "User Deleted Successfully.."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Error occurred timestamp",
+            "example": "2024-11-22T05:14:09.138+00:00"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Error code Issue",
+            "example": 200
           }
         }
       }

@@ -25,8 +25,7 @@ public class UserController implements UserApi {
 
   @Override
   public ResponseEntity<UserDto> getUserById(String id) {
-    UserDto dto = userService.getUserById(id);
-    return ResponseEntity.ok(dto);
+    return ResponseEntity.ok(userService.getUserById(id));
   }
 
   @Override
@@ -37,8 +36,7 @@ public class UserController implements UserApi {
 
   @Override
   public ResponseEntity<UserDto> updateUser(String id, @Valid UserDto dto) {
-    UserDto updatedUser = userService.updateUser(id, dto);
-    return ResponseEntity.ok().body(updatedUser);
+    return ResponseEntity.ok().body(userService.updateUser(id, dto));
   }
 
   @Override
